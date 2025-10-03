@@ -46,21 +46,21 @@ export default function Showcase() {
             key={`before-${fadeKey}`}
             src={`/img/draw_${index + 1}_before.png`}
             alt="Draw before"
-            width={300}
-            height={300}
+            width={200}
+            height={200}
           />
           <div className="caption">Sketch by {name}, {age} years old</div>
         </div>
 
         <div
           className="polaroid"
-          style={{ width: "200px", position: "absolute", bottom: "120px", left: "300px", rotate: "5deg" }}
+          style={{ height:"200px", width: "150px", position: "absolute", bottom: "140px", left: "300px", rotate: "5deg" }}
         >
           <Image
             src={`/img/draw_${index + 1}_ai.png`}
             alt="AI Art"
-            width={200}
-            height={200}
+            width={100}
+            height={150}
           />
           <div className="caption">AI transformed!</div>
         </div>
