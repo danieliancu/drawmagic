@@ -6,10 +6,10 @@ export default function Privacy() {
         <p><strong>Effective Date:</strong> July 2025</p>
 
         <p>
-          iupii.ro, provided by Green Horizon (“we”, “us”, or
-          “our”), respects your privacy. This Privacy Policy explains how we
+          iupii.ro, provided by Green Horizon (&quot;we&quot;, &quot;us&quot;, or
+          &quot;our&quot;), respects your privacy. This Privacy Policy explains how we
           collect, use, disclose, and safeguard your information when you use
-          our platform, where users can upload children’s drawings and receive
+          our platform, where users can upload children&apos;s drawings and receive
           AI-generated interpretations.
         </p>
 
@@ -50,7 +50,7 @@ export default function Privacy() {
           <li>Analyze usage for research and development.</li>
         </ul>
 
-        <h2>3. Children’s Privacy</h2>
+        <h2>3. Children&apos;s Privacy</h2>
         <p>
           We do not knowingly collect personal information from children under
           13 without verifiable parental consent. If you believe we have
@@ -59,8 +59,8 @@ export default function Privacy() {
         </p>
         <p>
           <strong>Note:</strong> While the uploaded content may include
-          children’s artwork, the platform is intended for use by parents,
-          guardians, or educators. Please supervise children's use of the
+          children&apos;s artwork, the platform is intended for use by parents,
+          guardians, or educators. Please supervise children&apos;s use of the
           service.
         </p>
 

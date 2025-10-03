@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Navbar({ onTryClick }) {
   const [scrolled, setScrolled] = useState(false);
@@ -10,7 +11,6 @@ export default function Navbar({ onTryClick }) {
       setIsMobile(window.innerWidth < 1000);
     };
 
-    // rulează o dată la load
     handleScrollResize();
 
     window.addEventListener("scroll", handleScrollResize);
@@ -24,20 +24,20 @@ export default function Navbar({ onTryClick }) {
 
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-      <a
-        style={{ textDecoration: "none", cursor: "pointer" }}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      <Link
+        href="/"
         className={`logo ${(isMobile && scrolled) ? "dark-logo" : ""}`}
+        style={{ textDecoration: "none", cursor: "pointer" }}
       >
         DrawMagic
-      </a>
+      </Link>
 
       <ul className="nav-links">
-        <li><a href="/#how">How It Works</a></li>
-        <li><a href="/#gallery">Gallery</a></li>
-        <li><a href="/#pricing">Pricing</a></li>
-        <li><a href="/#testimonials">Testimonials</a></li>
-        <li><a href="/#faq">FAQ</a></li>
+        <li><Link href="/#how">How It Works</Link></li>
+        <li><Link href="/#gallery">Gallery</Link></li>
+        <li><Link href="/#pricing">Pricing</Link></li>
+        <li><Link href="/#testimonials">Testimonials</Link></li>
+        <li><Link href="/#faq">FAQ</Link></li>
       </ul>
 
       <button

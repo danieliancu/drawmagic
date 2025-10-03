@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import UploadModal from "../components/UploadModal";
 import Showcase from "../components/Showcase";
 import BeforeAfterSlider from "../components/BeforeAfterSlider";
@@ -35,7 +36,17 @@ const handleViewMore = () => {
     <main className="home">
       <header className="hero">
 
-        <img src="/img/hero-3.png" alt="Hero Background" className="hero-bg" />
+
+      <Image
+        src="/img/hero-3.png"
+        alt="Hero Background"
+        className="hero-bg"
+        width={1920}
+        height={1080}
+        priority
+        unoptimized
+      />
+
 
 
         <div className="badge" style={{ top: '580px', right: '520px' }}>

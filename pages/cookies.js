@@ -7,12 +7,12 @@ export default function Cookies() {
 
         <p>
           This Cookie Policy explains how Doodle Dream, provided by Girema
-          Holdings Limited ("we", "us", or "our") uses cookies and similar
+          Holdings Limited (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar
           technologies to recognize you when you visit our website at{" "}
           <a href="https://doodledream.ai" target="_blank" rel="noopener noreferrer">
             https://doodledream.ai
           </a>{" "}
-          (“Site”). It describes what these technologies are, why we use them and
+          (&quot;Site&quot;). It describes what these technologies are, why we use them and
           your rights to control their use.
         </p>
 
@@ -20,7 +20,7 @@ export default function Cookies() {
         <p>
           Cookies are small data files placed on your device when you visit a
           website. They are widely used to make websites work or function more
-          efficiently, as well as to provide information to the website’s
+          efficiently, as well as to provide information to the website&apos;s
           operators.
         </p>
         <p>Cookies can be:</p>
@@ -82,7 +82,7 @@ export default function Cookies() {
         <h2>6. Updates to This Policy</h2>
         <p>
           We may update this Cookie Policy from time to time. Changes will be
-          posted on this page with a revised “Effective Date.” We encourage you
+          posted on this page with a revised &quot;Effective Date.&quot; We encourage you
           to review this page periodically.
         </p>
 

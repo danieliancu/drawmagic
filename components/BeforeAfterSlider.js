@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 export default function BeforeAfterSlider({ before, after }) {
   const [position, setPosition] = useState(50); 
@@ -36,13 +37,23 @@ export default function BeforeAfterSlider({ before, after }) {
   return (
     <div className="ba-container" ref={containerRef}>
       {/* BEFORE (desen) pe fundal */}
-      <img src={before} alt="Before" className="ba-img" />
+      <Image
+        src={before}
+        alt="Before"
+        className="ba-img"
+        width={600}
+        height={400}
+        unoptimized
+      />
 
-      {/* AFTER (AI) peste, dar decupat astfel încât să apară doar în dreapta sliderului */}
-      <img
+      {/* AFTER (AI) peste, dar decupat */}
+      <Image
         src={after}
         alt="After"
         className="ba-img ba-after"
+        width={600}
+        height={400}
+        unoptimized
         style={{
           clipPath: `inset(0 0 0 ${position}%)`
         }}

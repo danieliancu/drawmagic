@@ -7,9 +7,9 @@ export default function Terms() {
 
         <p>
           Welcome to Doodle Dream, provided by Girema Holdings Limited
-          (“we,” “our,” “us”). These Terms of Service (“Terms”) govern your
+          (&quot;we,&quot; &quot;our,&quot; &quot;us&quot;). These Terms of Service (&quot;Terms&quot;) govern your
           access to and use of our website and services, where users can upload
-          children’s drawings and receive AI-generated outputs (“Service”).
+          children&apos;s drawings and receive AI-generated outputs (&quot;Service&quot;).
           By using Doodle Dream, you agree to these Terms. If you do not agree,
           do not use the Service.
         </p>
@@ -23,7 +23,7 @@ export default function Terms() {
 
         <h2>2. User Content</h2>
         <p>
-          You retain ownership of drawings and any content (“User Content”)
+          You retain ownership of drawings and any content (&quot;User Content&quot;)
           you upload. However, by submitting content, you grant Doodle Dream a
           non-exclusive, royalty-free, worldwide license to:
         </p>
@@ -72,7 +72,7 @@ export default function Terms() {
 
         <h2>7. Disclaimers</h2>
         <p>
-          Use at your own risk. The Service is provided “as is” with no warranties,
+          Use at your own risk. The Service is provided &quot;as is&quot; with no warranties,
           express or implied. We do not guarantee that the AI results will meet
           your expectations or that the site will be error-free or available at
           all times.
