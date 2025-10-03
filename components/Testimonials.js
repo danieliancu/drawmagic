@@ -50,9 +50,10 @@ export default function Testimonials() {
         <div className="testi-slider">
           {visible.map((t, i) => (
             <div key={i} className="testi">
-              <div className="stars">★★★★★</div>
+              <span>{t.name}</span>
               <p>&quot;{t.text}&quot;</p>
-              <span>— {t.name}</span>
+              <div className="stars">★★★★★</div>
+
             </div>
           ))}
         </div>

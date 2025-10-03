@@ -101,7 +101,7 @@ const handleViewMore = () => {
         <div className="steps">
           <div className="step">
             <div className="step-icon">
-              <AiOutlineUpload size={40} />
+              <AiOutlineUpload size={80} />
             </div>
             <h3>Upload the Drawing</h3>
             <p>Snap a photo or scan your child’s artwork. Clear images give the best results.</p>
@@ -109,7 +109,7 @@ const handleViewMore = () => {
 
           <div className="step">
             <div className="step-icon">
-              <AiOutlineExperiment size={40} />
+              <AiOutlineExperiment size={80} />
             </div>
             <h3>AI Magic Transformation</h3>
             <p>Our AI turns the doodle into stunning digital art while keeping your child’s unique style alive.</p>
@@ -117,7 +117,7 @@ const handleViewMore = () => {
 
           <div className="step">
             <div className="step-icon">
-              <AiOutlineDownload size={40} />
+              <AiOutlineDownload size={80} />
             </div>
             <h3>Download or Print</h3>
             <p>Download the artwork instantly or order it on a canvas, mug, t-shirt, and more.</p>

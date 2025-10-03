@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-col">
-          <h2 className="logo">DrawMagic</h2>
+          <h2 className="logo">doodle<span style={{ color:"white" }}>joy</span></h2>
           <p>
             Bringing children&apos;s imagination to life — printed on canvas,
             mugs, t-shirts and beyond.
@@ -28,13 +28,13 @@ export default function Footer() {
 
         <div className="footer-col">
           <h3>Contact Us</h3>
-          <p><AiOutlineMail /> info@iupii.com</p>
-          <p><FaMapMarkerAlt /> Bucharest, Romania</p>
+          <p><AiOutlineMail /> info@doodlejoy.co.uk</p>
+          <p><FaMapMarkerAlt /> Southend on Sea, United Kingdom</p>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© DrawMagic.co.uk. All rights reserved.</p>
+        <p>© doodlejoy.co.uk. All rights reserved.</p>
         <div className="footer-links">
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms of Service</Link>

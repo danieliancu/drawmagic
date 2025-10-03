@@ -29,7 +29,12 @@ export default function Navbar({ onTryClick }) {
         className={`logo ${(isMobile && scrolled) ? "dark-logo" : ""}`}
         style={{ textDecoration: "none", cursor: "pointer" }}
       >
-        DrawMagic
+        <div>
+          doodle<span style={{ color:"rgb(219 39 119)" }}>joy</span>
+        </div>
+        <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '8.5px', fontWeight: 'lighter', lineHeight: '4px', opacity: 0.9 }}>
+          PRINTED IN THE UK
+        </div>
       </Link>
 
       <ul className="nav-links">
