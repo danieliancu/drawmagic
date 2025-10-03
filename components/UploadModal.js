@@ -6,8 +6,8 @@ export default function UploadModal({ show, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="close" onClick={onClose}>×</button>
-        <h2>Upload Your Child's Drawing</h2>
+        <button className="close" onClick={onClose}>&times;</button>
+        <h2>Upload Your Child&apos;s Drawing</h2>
         <p>
           Take a photo or scan of the artwork. For best results, use good
           lighting and avoid shadows.
@@ -15,7 +15,10 @@ export default function UploadModal({ show, onClose }) {
 
         <div className="upload-box">
           <span role="img" aria-label="upload">☁️⬆️</span>
-          <p>Drag & drop your image here<br />or click to browse files</p>
+          <p>
+            Drag &amp; drop your image here<br />
+            or click to browse files
+          </p>
         </div>
 
         <div className="steps">

@@ -6,15 +6,15 @@ const testimonials = [
     name: "Sarah J."
   },
   {
-    text: "As a teacher, I've used DoodleDream to create special end-of-year gifts …",
+    text: "As a teacher, I&apos;ve used DoodleDream to create special end-of-year gifts …",
     name: "Michael T."
   },
   {
-    text: "We turned my son's dinosaur drawing into a poster …",
+    text: "We turned my son&apos;s dinosaur drawing into a poster …",
     name: "Lisa M."
   },
   {
-    text: "Absolutely love it! Such a unique way to preserve kids’ creativity …",
+    text: "Absolutely love it! Such a unique way to preserve kids&apos; creativity …",
     name: "David P."
   },
   {
@@ -22,7 +22,7 @@ const testimonials = [
     name: "Anna R."
   },
   {
-    text: "Our whole family enjoyed the surprise gift made from my son's art …",
+    text: "Our whole family enjoyed the surprise gift made from my son&apos;s art …",
     name: "James K."
   }
 ];
@@ -45,21 +45,18 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="testimonials">
-        <div className="testimonial-container">
-            <h2>What Parents Are Saying</h2>
-            <div className="testi-slider">
-                {visible.map((t, i) => (
-                <div key={i} className="testi">
-                    <div className="stars">
-                        ★★★★★
-                    </div>
-
-                    <p>"{t.text}"</p>
-                    <span>— {t.name}</span>
-                </div>
-                ))}
+      <div className="testimonial-container">
+        <h2>What Parents Are Saying</h2>
+        <div className="testi-slider">
+          {visible.map((t, i) => (
+            <div key={i} className="testi">
+              <div className="stars">★★★★★</div>
+              <p>&quot;{t.text}&quot;</p>
+              <span>— {t.name}</span>
             </div>
+          ))}
         </div>
+      </div>
     </section>
   );
 }
