@@ -151,67 +151,94 @@ const handleViewMore = () => {
         <div className="pricing-cards">
 
           <div className="card">
-            <h3>Basic</h3>
-            <p>Perfect for trying out</p>
-            <p className="price">$4.99</p>
+            <Image src={`/img/icon-download.png`} alt="Download" height={40} width={40} />  
+            <h3>Download</h3>
+            <p>Instant digital artwork</p>
+            <p className="price">£4.99</p>
             <ul className="features">
               <li>
                 <AiOutlineCheck className="icon" />
-                1 artwork transformation
+                1 AI transformation
               </li>
               <li>
                 <AiOutlineCheck className="icon" />
-                AI-enhanced quality
+                Enhanced quality
               </li>
               <li>
                 <AiOutlineCheck className="icon" />
-                Fast delivery (2–5 min)
+                Instant delivery
               </li>
             </ul>
-            <button className="btn btn-kids">Get Basic</button>
+            <button className="btn btn-kids">Get Download</button>
           </div>
 
           <div className="card popular">
-              <h3>Premium</h3>
-              <p>For occasional transformations</p>
-              <p className="price">$9.99</p>
-              <ul className="features">
-                <li>
-                  <AiOutlineCheck className="icon" />
-                  2-3 transformations
-                </li>
-                <li>
-                  <AiOutlineCheck className="icon" />
-                  Sharper rendering
-                </li>
-                <li>
-                  <AiOutlineCheck className="icon" />
-                  Enhanced stylization
-                </li>
-              </ul>
-              <button className="btn btn-kids">Get Premium</button>
+            <p>Most Popular</p>
+            <Image src={`/img/icon-tshirt.png`} alt="T-Shirt" height={40} width={40} />              
+            <h3>T-Shirt</h3>
+            <p>Art on premium fabric</p>
+            <p className="price">£14.99</p>
+            <ul className="features">
+              <li>
+                <AiOutlineCheck className="icon" />
+                Transport included
+              </li>
+              <li>
+                <AiOutlineCheck className="icon" />
+                Multiple size options
+              </li>
+              <li>
+                <AiOutlineCheck className="icon" />
+                High-definition print
+              </li>
+            </ul>
+            <button className="btn btn-kids">Order T-Shirt</button>
           </div>
 
           <div className="card">
-              <h3>Iupii Club</h3>
-              <p>For creative families</p>
-              <p className="price">$14.99</p>
-              <ul className="features">
-                <li>
-                  <AiOutlineCheck className="icon" />
-                  4-10 transformations
-                </li>
-                <li>
-                  <AiOutlineCheck className="icon" />
-                  Priority rendering
-                </li>
-                <li>
-                  <AiOutlineCheck className="icon" />
-                  Seasonal styles access
-                </li>
-              </ul>
-              <button className="btn btn-kids">Get Dream Club</button>
+            <Image src={`/img/icon-coffee-cup.png`} alt="Mug" height={40} width={40} />              
+            <h3>Mug</h3>
+            <p>Perfect for gifts</p>
+            <p className="price">£12.99</p>
+            <ul className="features">
+              <li>
+                <AiOutlineCheck className="icon" />
+                Transport included
+              </li>
+              <li>
+                <AiOutlineCheck className="icon" />
+                Multiple design options
+              </li>
+              <li>
+                <AiOutlineCheck className="icon" />
+                Dishwasher-safe
+              </li>
+            </ul>
+            <button className="btn btn-kids">Order Mug</button>
           </div>
+
+          <div className="card">
+            <Image src={`/img/icon-picture.png`} alt="Canvas" height={40} width={40} />              
+            <h3>Canvas</h3>
+            <p>Gallery-style wall art</p>
+            <p className="price">£24.99</p>
+            <ul className="features">
+              <li>
+                <AiOutlineCheck className="icon" />
+                Transport included
+              </li>
+              <li>
+                <AiOutlineCheck className="icon" />
+                Multiple size options
+              </li>
+              <li>
+                <AiOutlineCheck className="icon" />
+                Ready-to-hang finish
+              </li>
+            </ul>
+            <button className="btn btn-kids">Order Canvas</button>
+          </div>
+       
 
 
 

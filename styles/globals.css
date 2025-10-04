@@ -215,7 +215,7 @@ body, html {
     width: 65px;
     height: 75px;
     position: absolute;
-    top: 735px;
+    top: 733px;
     right: 835px;
     z-index: 1;
 }
@@ -232,9 +232,10 @@ body, html {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 .hero-bg {
@@ -546,7 +547,7 @@ body, html {
 /* ========== Pricing ========== */
 .pricing {
   padding: 80px 20px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   text-align: center;
 }
@@ -563,14 +564,33 @@ body, html {
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 32px;
-  width: 320px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position:relative;
 }
 
 .card.popular {
   border: 2px solid #4a90e2;
+}
+
+.card p {
+  margin:0;
+  margin-bottom:10px;
+}
+
+.card.popular p:first-child {
+  position:absolute;
+  right:0;
+  top:0;
+  background: #4a90e2;
+  margin:0;
+  border-radius: 10px 10px 0 0;
+  padding:5px 20px;
+  color: white;
+  font-size:14px;
+  width:100%;
 }
 
 .card h3 {
@@ -754,7 +774,7 @@ body, html {
 .footer-col h2.logo {
   font-size: 2rem;
   font-weight: bold;
-  color: rgb(219 39 119);
+  color: white;
   margin:0;
 }
 

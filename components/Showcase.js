@@ -22,11 +22,12 @@ export default function Showcase() {
       setIndex((prev) => (prev + 1) % sketches.length);
       setFadeKey((prev) => prev + 1);
 
-      setShowCanvas(false);
       setShowTshirt(false);
       setShowMug(false);
 
-      setTimeout(() => setShowCanvas(true), 500);
+      setShowCanvas(true);
+
+
       setTimeout(() => setShowTshirt(true), 800);
       setTimeout(() => setShowMug(true), 1100);
     }, 5000);
@@ -54,7 +55,7 @@ export default function Showcase() {
 
         <div
           className="polaroid"
-          style={{ height:"200px", width: "150px", position: "absolute", bottom: "140px", left: "300px", rotate: "5deg" }}
+          style={{ height:"200px", width: "150px", position: "absolute", top: "570px", left: "300px", rotate: "5deg" }}
         >
           <Image
             src={`/img/draw_${index + 1}_ai.png`}
@@ -131,6 +132,34 @@ export default function Showcase() {
           />
           <div className="caption">AI transformed!</div>
         </div>
+      </div>
+      <div className="mobile-only" style={{ display:"none", justifyContent:"center", gap:"10px", marginTop:"60px" }}>
+
+        <Image
+          src={`/img/icon-tshirt.png`}
+          alt="T-Shirt"
+          height={40}
+          width={40}
+        />
+        <Image
+          src={`/img/icon-coffee-cup.png`}
+          alt="Mug"
+          height={40}
+          width={40}
+        />        
+        <Image
+          src={`/img/icon-picture.png`}
+          alt="Mug"
+          height={40}
+          width={40}
+        />                
+        <Image
+          src={`/img/icon-download.png`}
+          alt="Mug"
+          height={40}
+          width={40}
+        />                        
+        
       </div>
     </>
   );

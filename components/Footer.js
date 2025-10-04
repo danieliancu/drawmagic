@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-col">
-          <h2 className="logo">doodle<span style={{ color:"white" }}>joy</span></h2>
+          <h2 className="logo">doodle<span style={{ color:"rgb(219 39 119)" }}>joy</span></h2>
           <p>
             Bringing children&apos;s imagination to life — printed on canvas,
             mugs, t-shirts and beyond.
@@ -34,7 +34,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© doodlejoy.co.uk. All rights reserved.</p>
+        <p style={{ marginTop:"0" }}>© doodlejoy.co.uk. All rights reserved.</p>
         <div className="footer-links">
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms of Service</Link>
