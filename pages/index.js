@@ -226,7 +226,7 @@ const handleCheckout = async (name, amount) => {
                 High-definition print
               </li>
             </ul>
-            <button className="btn btn-kids">Order T-Shirt</button>
+            <button className="btn btn-kids" onClick={() => openUploadModal()}>Order T-Shirt</button>
           </div>
 
           <div className="card">
@@ -248,7 +248,7 @@ const handleCheckout = async (name, amount) => {
                 Dishwasher-safe
               </li>
             </ul>
-            <button className="btn btn-kids">Order Mug</button>
+            <button className="btn btn-kids" onClick={() => openUploadModal()}>Order Mug</button>
           </div>
 
           <div className="card">
@@ -270,7 +270,7 @@ const handleCheckout = async (name, amount) => {
                 Ready-to-hang finish
               </li>
             </ul>
-            <button className="btn btn-kids">Order Canvas</button>
+            <button className="btn btn-kids" onClick={() => openUploadModal()}>Order Canvas</button>
           </div>
        
 

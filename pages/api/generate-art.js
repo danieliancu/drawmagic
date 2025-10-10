@@ -64,14 +64,16 @@ export default async function handler(req, res) {
     });
 
     // 🧠 Prompt AI
-    const safePrompt = `
-      You are an AI illustrator. Recreate the uploaded hand-drawn artwork 
-      in a ${style} illustration style. 
-      Keep the same layout and proportions (${width}x${height}), 
-      enhancing it with vibrant colors and imagination. 
-      The uploaded image is a child's drawing of imaginary characters or objects. 
-      Ensure the output is artistic, family-friendly, and non-photorealistic.
-    `;
+const safePrompt = `
+  You are an AI illustrator. Recreate the uploaded hand-drawn artwork 
+  in a ${style} illustration style. 
+  Keep the same composition and proportions (${width}x${height}), 
+  enhancing it with vibrant colors, refined shapes, and imaginative details.
+  Also enhance and extend the background to match the scene and the chosen style, 
+  creating a coherent and visually rich environment that complements the drawing.
+  The final result should look like a polished digital artwork — artistic, creative,
+  and non-photorealistic, suitable for all audiences.
+`;
 
     // 🪄 Generare imagine AI
     const response = await openai.responses.create({
@@ -110,10 +112,16 @@ export default async function handler(req, res) {
 
     // ✅ Trimitem URL-ul public
     res.status(200).json({ imageUrl: uploadResult.secure_url });
-  } catch (err) {
-    console.error("❌ Error:", err);
-    res.status(500).json({ error: err.message });
-  } finally {
+    } catch (err) {
+      console.error("❌ GENERATE-ART ERROR DETAILS:");
+      console.error("Type:", err.type || "N/A");
+      console.error("Code:", err.code || "N/A");
+      console.error("Message:", err.message || "No message");
+      console.error("Stack:", err.stack || "No stack");
+      res.status(500).json({
+        error: err.message || "Unknown error during image generation",
+      });
+    } finally {
     // 🧹 Curățăm fișierul temporar
     if (filePath && fs.existsSync(filePath)) {
       try {
