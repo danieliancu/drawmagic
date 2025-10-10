@@ -4,12 +4,13 @@ import fs from "fs";
 import path from "path";
 import imageSize from "image-size";
 import { v2 as cloudinary } from "cloudinary";
+import os from "os"; // ✅ pentru tmpdir
 
 export const config = {
   api: { bodyParser: false },
 };
 
-// 🔹 Configurare Cloudinary (folosește variabilele din .env.local)
+// 🔹 Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -18,16 +19,24 @@ cloudinary.config({
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+// ✅ Director temporar sigur (Vercel → /tmp)
+const tempDir = os.tmpdir();
+
 export default async function handler(req, res) {
   let filePath = null;
 
   try {
-    // 📂 Parse form-data
-    const form = formidable({ multiples: false, uploadDir: "./temp", keepExtensions: true });
-    const [fields, files] = await form.parse(req);
+    // 📂 Parse form-data în folder temporar sigur
+    const form = formidable({
+      multiples: false,
+      uploadDir: tempDir,
+      keepExtensions: true,
+    });
 
+    const [fields, files] = await form.parse(req);
     const style = fields.style?.[0];
     const uploadedFile = files.file?.[0];
+
     if (!uploadedFile || !style) {
       return res.status(400).json({ error: "Missing file or style" });
     }
@@ -44,38 +53,42 @@ export default async function handler(req, res) {
     }
 
     // 🖼️ Dimensiuni imagine
-    let width = 512, height = 512, aspectRatio = 1;
+    let width = 512, height = 512;
     try {
       const buffer = fs.readFileSync(filePath);
       const dims = imageSize(buffer);
       if (dims.width && dims.height) {
         width = dims.width;
         height = dims.height;
-        aspectRatio = width / height;
       }
     } catch {
-      console.warn("⚠️ Could not read image dimensions, using default 1:1 ratio.");
+      console.warn("⚠️ Could not read image dimensions.");
     }
 
-    // 📤 Upload imagine către OpenAI
+    // 🧠 Prompt
+const safePrompt = `
+  You are a professional digital illustrator. 
+  Use the uploaded sketch as artistic inspiration and reinterpret it 
+  in a ${style} illustration style.
+  Keep the same visual composition and proportions (${width}x${height}), 
+  enriching the scene with balanced colors, clean shapes, and creative atmosphere.
+  Preserve any existing characters, animals, or objects — refine their details
+  and artistic quality while keeping their recognizable form and personality.
+  Recreate and extend the background in harmony with the subject, 
+  making the entire image cohesive, colorful, and visually engaging.
+  The final artwork should look like a vivid, imaginative digital illustration — 
+  detailed, expressive, and family-friendly, avoiding photorealistic or human portrait rendering.
+`;
+
+
+
+    // 🧠 Upload imagine -> OpenAI
     const fileResult = await openai.files.create({
       file: fs.createReadStream(filePath),
       purpose: "vision",
     });
 
-    // 🧠 Prompt AI
-const safePrompt = `
-  You are an AI illustrator. Recreate the uploaded hand-drawn artwork 
-  in a ${style} illustration style. 
-  Keep the same composition and proportions (${width}x${height}), 
-  enhancing it with vibrant colors, refined shapes, and imaginative details.
-  Also enhance and extend the background to match the scene and the chosen style, 
-  creating a coherent and visually rich environment that complements the drawing.
-  The final result should look like a polished digital artwork — artistic, creative,
-  and non-photorealistic, suitable for all audiences.
-`;
-
-    // 🪄 Generare imagine AI
+    // 🪄 Generare imagine
     const response = await openai.responses.create({
       model: "gpt-4.1-mini",
       input: [
@@ -99,9 +112,9 @@ const safePrompt = `
       throw new Error("Image generation failed — no output returned.");
     }
 
-    // 🔄 Convertim base64 → upload Cloudinary
     const base64Data = imageData[0].replace(/^data:image\/\w+;base64,/, "");
 
+    // ☁️ Upload pe Cloudinary
     const uploadResult = await cloudinary.uploader.upload(
       `data:image/png;base64,${base64Data}`,
       {
@@ -110,19 +123,15 @@ const safePrompt = `
       }
     );
 
-    // ✅ Trimitem URL-ul public
     res.status(200).json({ imageUrl: uploadResult.secure_url });
-    } catch (err) {
-      console.error("❌ GENERATE-ART ERROR DETAILS:");
-      console.error("Type:", err.type || "N/A");
-      console.error("Code:", err.code || "N/A");
-      console.error("Message:", err.message || "No message");
-      console.error("Stack:", err.stack || "No stack");
-      res.status(500).json({
-        error: err.message || "Unknown error during image generation",
-      });
-    } finally {
-    // 🧹 Curățăm fișierul temporar
+  } catch (err) {
+    console.error("❌ GENERATE-ART ERROR DETAILS:");
+    console.error("Message:", err.message);
+    res.status(500).json({
+      error: err.message || "Unknown error during image generation",
+    });
+  } finally {
+    // 🧹 Curățare fișier temporar
     if (filePath && fs.existsSync(filePath)) {
       try {
         fs.unlinkSync(filePath);

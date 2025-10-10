@@ -190,7 +190,13 @@ export default function UploadModal({ show, onClose }) {
               </div>
             ))}
 
-            {progress && <p className="progress">{progress}</p>}
+            {progress &&
+              <p className="progress">
+                {progress}
+                <br />
+                <span style={{ color:"black",fontWeight:"100" }}>(this may take up to 2 minutes)</span>
+              </p>
+            }
 
             {!progress && (
               <>
@@ -285,7 +291,9 @@ export default function UploadModal({ show, onClose }) {
 
             {image && (
               <>
+              {!progress && (
                 <h3 style={{ marginTop: "20px" }}>Choose a Style</h3>
+              )}
                 {progress && <p className="progress">{progress}</p>}
                 <div className="style-options">
                   {styles.map((style) => (
