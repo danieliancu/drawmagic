@@ -9,8 +9,8 @@ export default function Cookies() {
           This Cookie Policy explains how Doodle Dream, provided by Girema
           Holdings Limited (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar
           technologies to recognize you when you visit our website at{" "}
-          <a href="https://doodledream.ai" target="_blank" rel="noopener noreferrer">
-            https://doodledream.ai
+          <a href="https://doodlejoy.co.uk" target="_blank" rel="noopener noreferrer">
+            https://doodlejoy.co.uk
           </a>{" "}
           (&quot;Site&quot;). It describes what these technologies are, why we use them and
           your rights to control their use.
@@ -92,8 +92,8 @@ export default function Cookies() {
           Policy, feel free to contact us:
         </p>
         <p>
-          📧 Email: <a href="mailto:info@giremaholdings.com">info@giremaholdings.com</a><br />
-          📫 Mail: Girema Holdings Limited, Karaiskaki 13, 3032 Limassol, Cyprus
+          📧 Email: <a href="mailto:info@doodlejoy.co.uk">info@doodlejoy.co.uk</a><br />
+          📫 Address: Southend on Sea, United Kingdom
         </p>
       </div>
     </main>

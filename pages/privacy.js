@@ -6,7 +6,7 @@ export default function Privacy() {
         <p><strong>Effective Date:</strong> July 2025</p>
 
         <p>
-          iupii.ro, provided by Green Horizon (&quot;we&quot;, &quot;us&quot;, or
+          doodlejoy.co.uk, provided by Daniel Iancu (&quot;we&quot;, &quot;us&quot;, or
           &quot;our&quot;), respects your privacy. This Privacy Policy explains how we
           collect, use, disclose, and safeguard your information when you use
           our platform, where users can upload children&apos;s drawings and receive
@@ -109,8 +109,8 @@ export default function Privacy() {
           contact us at:
         </p>
         <p>
-          📧 Email: <a href="mailto:info@giremaholdings.com">info@giremaholdings.com</a><br />
-          📫 Mail: Girema Holdings Limited, Karaiskaki 13, 3032 Limassol, Cyprus
+          📧 Email: <a href="mailto:info@doodlejoy.co.uk">info@doodlejoy.co.uk</a><br />
+          📫 Address: Southend on Sea, United Kingdom
         </p>
 
         <h2>10. Changes to This Policy</h2>

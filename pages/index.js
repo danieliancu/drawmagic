@@ -6,6 +6,9 @@ import BeforeAfterSlider from "../components/BeforeAfterSlider";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 
+  import { loadStripe } from "@stripe/stripe-js";
+
+
 import { 
   AiOutlineCheck, 
   AiOutlineUpload, 
@@ -16,8 +19,12 @@ import {
 
 
 
-export default function Home() {
+export default function Home({ openUploadModal }) {
   const [showModal, setShowModal] = useState(false);
+
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
 
 
 // total imagini disponibile
@@ -29,6 +36,30 @@ const [visibleCount, setVisibleCount] = useState(3);
 const handleViewMore = () => {
   setVisibleCount((prev) => Math.min(prev + 3, totalItems));
 };
+
+
+const handleCheckout = async (name, amount) => {
+  console.log("Creating checkout for:", name, amount);
+
+  const res = await fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, amount }),
+  });
+
+  const data = await res.json();
+  console.log("Stripe session:", data);
+
+  if (data.url) {
+    // ✅ redirecționează corect către Stripe
+    window.location.href = data.url;
+  } else {
+    // ❌ dacă nu s-a primit URL, afișează eroare
+    alert("Eroare la crearea sesiunii Stripe!");
+  }
+};
+
+
 
 
 
@@ -84,7 +115,7 @@ const handleViewMore = () => {
           <div className="hero-buttons" style={{ zIndex:"4" }}>
             <button
               className="btn-kids btn-upload"
-              onClick={() => setShowModal(true)}
+              onClick={() => openUploadModal()}
             >
               Upload Your Child’s Drawing
             </button>
@@ -169,7 +200,10 @@ const handleViewMore = () => {
                 Instant delivery
               </li>
             </ul>
-            <button className="btn btn-kids">Get Download</button>
+              <button className="btn btn-kids" onClick={() => handleCheckout("Download", 4.99)}>
+              Get Download
+            </button>
+
           </div>
 
           <div className="card popular">

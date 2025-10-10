@@ -598,6 +598,7 @@ body, html {
   font-weight: 100;
   color: #4a90e2;
   margin:0;
+  margin-top:10px;
 }
 
 
@@ -660,7 +661,6 @@ body, html {
 }
 
 .testimonials h2 {
-  font-size: 2rem;
   margin-bottom: 40px;
 }
 
@@ -857,6 +857,8 @@ body, html {
   max-width: 500px;
   text-align: center;
   position: relative;
+  height:95vh;
+  overflow-y:auto;
 }
 .modal h2 {
   margin: 0;
@@ -872,11 +874,72 @@ body, html {
   cursor: pointer;
 }
 .upload-box {
-  border: 2px dashed #aaa;
-  padding: 40px;
+  border: 2px dashed #ccc;
   border-radius: 10px;
-  margin: 20px 0;
+  text-align: center;
+  padding: 30px;
+  cursor: pointer;
+  background: white;
 }
+
+
+.style-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.style-box {
+  width: 30%;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+.style-box:hover {
+  border-color: #ff99cc;
+  background: #fff6fa;
+}
+.style-box.selected {
+  border-color: #ff66b2;
+  background: #ffe6f0;
+  box-shadow: 0 0 6px rgba(255, 105, 180, 0.4);
+}
+.style-box h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+.style-box p {
+  font-size: 13px;
+  color: #666;
+}
+
+
+.retry-section {
+  animation: fadeIn 0.5s ease;
+      text-align: center;
+    cursor: pointer;
+    background: #fff;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 0px 30px 30px 30px;
+    margin-top:25px;
+
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
 .steps {
   display: flex;
   justify-content: space-around;
@@ -896,6 +959,55 @@ body, html {
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 20px;
+}
+.generated-section {
+  text-align: center;
+}
+.image-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.image-row div {
+  text-align: center;
+  width: 45%;
+}
+
+.preview {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  object-fit: contain; /* sau 'cover' dacă preferi umplerea completă */
+  background-color: white; 
+  display: block;
+  border:4px solid white;
+}
+
+
+
+
+.progress {
+  margin-top: 10px;
+  color: #ff66b2;
+  font-weight: 600;
+  animation: blink 1s infinite alternate;
+  margin-bottom:0px;
+}
+
+@keyframes blink {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
 }
 
 
@@ -939,6 +1051,18 @@ body, html {
 @media screen and (max-width: 500px)  {
   .not-mobile {
     display: none;
+  }
+  .style-options {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .style-box {
+    width: 100%;
+    padding: 0;
+    padding-top:5px;
+  }
+  .style-box p {
+    margin:6px;
   }
 
 

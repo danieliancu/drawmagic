@@ -6,11 +6,11 @@ export default function Terms() {
         <p><strong>Effective Date:</strong> July 2025</p>
 
         <p>
-          Welcome to Doodle Dream, provided by Girema Holdings Limited
+          Welcome to DoodleJoy, provided by Daniel Iancu
           (&quot;we,&quot; &quot;our,&quot; &quot;us&quot;). These Terms of Service (&quot;Terms&quot;) govern your
           access to and use of our website and services, where users can upload
           children&apos;s drawings and receive AI-generated outputs (&quot;Service&quot;).
-          By using Doodle Dream, you agree to these Terms. If you do not agree,
+          By using DoodleJoy, you agree to these Terms. If you do not agree,
           do not use the Service.
         </p>
 
@@ -102,8 +102,8 @@ export default function Terms() {
           For any questions or concerns about these Terms, contact us at:
         </p>
         <p>
-          📧 Email: <a href="mailto:info@giremaholdings.com">info@giremaholdings.com</a><br />
-          📫 Mail: Girema Holdings Limited, Karaiskaki 13, 3032 Limassol, Cyprus
+          📧 Email: <a href="mailto:info@doodlejoy.co.uk">info@doodlejoy.co.uk</a><br />
+          📫 Address: Southend on Sea, United Kingdom
         </p>
       </div>
     </main>
