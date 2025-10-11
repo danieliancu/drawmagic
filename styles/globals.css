@@ -432,6 +432,53 @@ body, html {
   padding:10px;
 }
 
+.step-icon-small {
+  padding:0;
+  z-index: 1;
+  width:33%;
+    background-color: transparent;
+
+}
+
+.step-icon-small svg {
+  width:60px;
+  height:60px;
+  background: #4a90e2;
+  color:white;
+  border-radius:100%;
+  padding:4px;
+}
+
+.steps-small {
+    display: flex;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+      z-index: 1;
+    gap:20px;
+}
+
+.steps-small p {
+  color:black;
+  font-size:16px;
+  font-weight:800;
+  margin:0;
+}
+
+.steps-small-line {
+    z-index: 0;
+    border-top: 4px solid #4a90e2;
+    width: 80%;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+  
+}
+
+
 
 /* ========== Gallery ========== */
 .gallery {
@@ -571,27 +618,12 @@ body, html {
   position:relative;
 }
 
-.card.popular {
-  border: 2px solid #4a90e2;
-}
 
 .card p {
   margin:0;
   margin-bottom:10px;
 }
 
-.card.popular p:first-child {
-  position:absolute;
-  right:0;
-  top:0;
-  background: #4a90e2;
-  margin:0;
-  border-radius: 10px 10px 0 0;
-  padding:5px 20px;
-  color: white;
-  font-size:14px;
-  width:100%;
-}
 
 .card h3 {
   font-size: 1.8rem;
@@ -857,7 +889,7 @@ body, html {
   max-width: 500px;
   text-align: center;
   position: relative;
-  height:95vh;
+  height:85vh;
   overflow-y:auto;
 }
 .modal h2 {
@@ -1079,6 +1111,7 @@ body, html {
     width: 100%;
     border-radius: 0 0 6px 6px;
   }
+
 
 }
 

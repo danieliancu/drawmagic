@@ -1,6 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
+import { 
+  AiOutlineCheck, 
+  AiOutlineUpload, 
+  AiOutlineExperiment, 
+  AiOutlineDownload 
+} from "react-icons/ai";
+
 export default function UploadModal({ show, onClose }) {
   const [image, setImage] = useState(null);
   const [compressedFile, setCompressedFile] = useState(null);
@@ -289,12 +296,36 @@ export default function UploadModal({ show, onClose }) {
               />
             </div>
 
+            {!progress && (
+            <div className="steps-small">
+              <div className="step-icon step-icon-small">
+                <AiOutlineUpload size={40} />
+                <p>Upload the Drawing</p>
+              </div>
+              <div className="step-icon step-icon-small">
+                <AiOutlineExperiment size={40} />
+                <p>AI Magic Transformation</p>
+              </div> 
+              <div className="step-icon step-icon-small">
+                <AiOutlineDownload  size={40} />
+                <p>Download or Print</p>
+              </div>  
+              <div className="steps-small-line"></div>
+            </div>
+            )}
+
             {image && (
               <>
               {!progress && (
                 <h3 style={{ marginTop: "20px" }}>Choose a Style</h3>
               )}
-                {progress && <p className="progress">{progress}</p>}
+                {progress &&
+                <p className="progress">
+                  {progress}
+                  <br />
+                  <span style={{ color:"black",fontWeight:"100" }}>(this may take up to 2 minutes)</span>
+                </p>
+                }
                 <div className="style-options">
                   {styles.map((style) => (
                     <div

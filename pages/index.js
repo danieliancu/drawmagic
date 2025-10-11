@@ -206,8 +206,7 @@ const handleCheckout = async (name, amount) => {
 
           </div>
 
-          <div className="card popular">
-            <p>Most Popular</p>
+          <div className="card">
             <Image src={`/img/icon-tshirt.png`} alt="T-Shirt" height={40} width={40} />              
             <h3>T-Shirt</h3>
             <p>Art on premium fabric</p>

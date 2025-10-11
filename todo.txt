@@ -1,0 +1,6 @@
+- poze protejate
+- preturi de fixat
+- preturi homepage
+- eroare logo pe alb
+- inchidere modal in timp de procesare poza - cerere confirmare
+- de rezolvat cu marimea pozelor pt AI
