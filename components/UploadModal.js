@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-
 import { 
   AiOutlineCheck, 
   AiOutlineUpload, 
@@ -14,7 +13,9 @@ export default function UploadModal({ show, onClose }) {
   const [originalUrl, setOriginalUrl] = useState(null);
   const [selectedStyle, setSelectedStyle] = useState(null);
   const [progress, setProgress] = useState(null);
-  const [generatedImages, setGeneratedImages] = useState([]); // 🆕 toate imaginile generate
+  const [generatedImages, setGeneratedImages] = useState([]);
+  const [savedDescription, setSavedDescription] = useState(null); // 🧠 GPT-4o description saved here
+  const [analysisInfo, setAnalysisInfo] = useState(null); // 🧩 vizual info pt user
   const fileInputRef = useRef(null);
 
   // 🧹 Cleanup pentru URL.createObjectURL
@@ -48,7 +49,7 @@ export default function UploadModal({ show, onClose }) {
       img.src = URL.createObjectURL(file);
     });
 
-  // 📂 Când se selectează o imagine
+  // 📂 Upload normal
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -56,10 +57,12 @@ export default function UploadModal({ show, onClose }) {
     setImage(file);
     setCompressedFile(compressed);
     setOriginalUrl(URL.createObjectURL(compressed));
-    setGeneratedImages([]); // resetăm istoria la o nouă imagine
+    setGeneratedImages([]);
+    setSavedDescription(null); // 🧠 resetăm analiza
+    setAnalysisInfo(null);
   };
 
-  // 📥 Când se face drag & drop
+  // 📥 Drag & drop
   const handleDrop = async (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -68,7 +71,9 @@ export default function UploadModal({ show, onClose }) {
     setImage(file);
     setCompressedFile(compressed);
     setOriginalUrl(URL.createObjectURL(compressed));
-    setGeneratedImages([]); // resetăm istoria
+    setGeneratedImages([]);
+    setSavedDescription(null);
+    setAnalysisInfo(null);
   };
 
   const handleDragOver = (e) => e.preventDefault();
@@ -76,17 +81,29 @@ export default function UploadModal({ show, onClose }) {
   // 🧠 Generare imagine AI
   const handleGenerate = async (styleToUse = null) => {
     const style = styleToUse || selectedStyle;
-    if (!compressedFile || !style) {
-      alert("Please upload an image and choose a style first!");
+    if (!compressedFile && !savedDescription) {
+      alert("Please upload an image first!");
+      return;
+    }
+    if (!style) {
+      alert("Please choose a style!");
       return;
     }
 
     setSelectedStyle(style);
     setProgress("Preparing your masterpiece...");
 
+    // 🧩 stabilim mesajul informativ
+    if (savedDescription) {
+      setAnalysisInfo("Using saved analysis ✅");
+    } else {
+      setAnalysisInfo("Analyzing new drawing 🧠 ...");
+    }
+
     const formData = new FormData();
-    formData.append("file", compressedFile);
+    if (compressedFile) formData.append("file", compressedFile);
     formData.append("style", style);
+    if (savedDescription) formData.append("description", savedDescription);
 
     try {
       const res = await fetch("/api/generate-art", {
@@ -100,42 +117,64 @@ export default function UploadModal({ show, onClose }) {
       const data = await res.json();
       if (data.error) throw new Error(data.error);
 
-      // 🆕 Adaugă un nou rezultat în listă
+      // 🧠 salvăm descrierea pentru stilurile următoare
+      if (data.description) {
+        setSavedDescription(data.description);
+      }
+
+      // 🆕 Adaugăm rezultatul nou
       setGeneratedImages((prev) => [
         ...prev,
         { style, imageUrl: data.imageUrl },
       ]);
 
       setProgress(null);
+      setAnalysisInfo(null);
     } catch (err) {
-      console.error(err);
-      setProgress(
-        <span style={{ color: "red" }}>
-          ❌ Something went wrong.{" "}
-          <button
-            onClick={() => {
-              setGeneratedImages([]);
-              setOriginalUrl(null);
-              setSelectedStyle(null);
-              setImage(null);
-              setCompressedFile(null);
-              setProgress(null);
-            }}
-            style={{
-              background: "#ffcc00",
-              border: "none",
-              borderRadius: "6px",
-              padding: "4px 10px",
-              marginLeft: "8px",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-          >
-            Try again
-          </button>
-        </span>
-      );
-    }
+  console.error("❌ GENERATE-ART ERROR:", err);
+
+  // extragem un mesaj lizibil, dacă există
+  const errorText =
+    err?.message ||
+    (typeof err === "string" ? err : "An unexpected error occurred.");
+
+  setProgress(null); // scoatem spinnerul
+  setAnalysisInfo(null); // ascundem mesajele de analiză
+
+  // afișăm mesajul vizual, fără să resetăm datele
+  setProgress(
+    <div style={{ color: "red", marginTop: "10px" }}>
+      ❌ <strong>Something went wrong.</strong>
+      <br />
+      <span style={{ fontSize: "14px", color: "#333" }}>
+        {errorText.includes("rate") ||
+        errorText.includes("timeout") ||
+        errorText.includes("limit")
+          ? "The AI service is currently busy. Please try again in a few seconds."
+          : "Please try again — your drawing and settings are still safe."}
+      </span>
+      <br />
+      <button
+        onClick={() => {
+          setProgress(null);
+          handleGenerate(selectedStyle); // reîncearcă cu același stil
+        }}
+        style={{
+          background: "#ffcc00",
+          border: "none",
+          borderRadius: "6px",
+          padding: "5px 12px",
+          marginTop: "10px",
+          cursor: "pointer",
+          fontWeight: "bold",
+        }}
+      >
+        🔁 Try Again
+      </button>
+    </div>
+  );
+}
+
   };
 
   // 🎨 Stiluri disponibile
@@ -148,7 +187,7 @@ export default function UploadModal({ show, onClose }) {
     { name: "Fantasy", desc: "Magical and storybook style" },
   ];
 
-  // 🧱 Randare modal
+  // 🧱 Render
   return show ? (
     <div className="modal-overlay" onClick={() => !progress && onClose()}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -172,7 +211,6 @@ export default function UploadModal({ show, onClose }) {
           <div className="generated-section">
             <h3 style={{ margin: 0 }}>Your AI-Enhanced Artwork</h3>
 
-            {/* 🔁 Afișăm fiecare versiune generată */}
             {generatedImages.map((item, idx) => (
               <div key={idx} className="image-row">
                 <div>
@@ -197,13 +235,28 @@ export default function UploadModal({ show, onClose }) {
               </div>
             ))}
 
-            {progress &&
+            {analysisInfo && (
+              <p
+                style={{
+                  color: "#444",
+                  fontStyle: "italic",
+                  fontSize: "14px",
+                  marginTop: "6px",
+                }}
+              >
+                {analysisInfo}
+              </p>
+            )}
+
+            {progress && (
               <p className="progress">
                 {progress}
                 <br />
-                <span style={{ color:"black",fontWeight:"100" }}>(this may take up to 2 minutes)</span>
+                <span style={{ color: "black", fontWeight: "100" }}>
+                  (this may take up to 2 minutes)
+                </span>
               </p>
-            }
+            )}
 
             {!progress && (
               <>
@@ -240,7 +293,9 @@ export default function UploadModal({ show, onClose }) {
                 setSelectedStyle(null);
                 setImage(null);
                 setCompressedFile(null);
+                setSavedDescription(null);
                 setProgress(null);
+                setAnalysisInfo(null);
               }}
               style={{ marginTop: "20px" }}
               disabled={!!progress}
@@ -273,11 +328,7 @@ export default function UploadModal({ show, onClose }) {
                 />
               ) : (
                 <>
-                  <span
-                    style={{ fontSize: "42px" }}
-                    role="img"
-                    aria-label="upload"
-                  >
+                  <span style={{ fontSize: "42px" }} role="img" aria-label="upload">
                     ☁️
                   </span>
                   <p>
@@ -297,35 +348,50 @@ export default function UploadModal({ show, onClose }) {
             </div>
 
             {!progress && (
-            <div className="steps-small">
-              <div className="step-icon step-icon-small">
-                <AiOutlineUpload size={40} />
-                <p>Upload the Drawing</p>
+              <div className="steps-small">
+                <div className="step-icon step-icon-small">
+                  <AiOutlineUpload size={40} />
+                  <p>Upload the Drawing</p>
+                </div>
+                <div className="step-icon step-icon-small">
+                  <AiOutlineExperiment size={40} />
+                  <p>AI Magic Transformation</p>
+                </div>
+                <div className="step-icon step-icon-small">
+                  <AiOutlineDownload size={40} />
+                  <p>Download or Print</p>
+                </div>
+                <div className="steps-small-line"></div>
               </div>
-              <div className="step-icon step-icon-small">
-                <AiOutlineExperiment size={40} />
-                <p>AI Magic Transformation</p>
-              </div> 
-              <div className="step-icon step-icon-small">
-                <AiOutlineDownload  size={40} />
-                <p>Download or Print</p>
-              </div>  
-              <div className="steps-small-line"></div>
-            </div>
             )}
 
             {image && (
               <>
-              {!progress && (
-                <h3 style={{ marginTop: "20px" }}>Choose a Style</h3>
-              )}
-                {progress &&
-                <p className="progress">
-                  {progress}
-                  <br />
-                  <span style={{ color:"black",fontWeight:"100" }}>(this may take up to 2 minutes)</span>
-                </p>
-                }
+                {!progress && <h3 style={{ marginTop: "20px" }}>Choose a Style</h3>}
+
+                {analysisInfo && (
+                  <p
+                    style={{
+                      color: "#444",
+                      fontStyle: "italic",
+                      fontSize: "14px",
+                      marginTop: "6px",
+                    }}
+                  >
+                    {analysisInfo}
+                  </p>
+                )}
+
+                {progress && (
+                  <p className="progress">
+                    {progress}
+                    <br />
+                    <span style={{ color: "black", fontWeight: "100" }}>
+                      (this may take up to 2 minutes)
+                    </span>
+                  </p>
+                )}
+
                 <div className="style-options">
                   {styles.map((style) => (
                     <div

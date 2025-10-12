@@ -1,7 +1,26 @@
 https://www.tshirtstudio.com/
 
+2 images - 0.09
+3 images - 0.26
+
+__________________________________________
 
 
+4 images - 0.30 (plus 3 variatii)
+
+
+_________________________________
+
+WAS: Responses and Chat Completions: $0.43, 11 requests, 
+2.641K input tokens
+
+
+THEN: $0.44, 16 requests
+5.761K input tokens
+
+
+NOW: $0.57, 19 requests
+6.13K input tokens
 
 
 https://www.amazon.co.uk/BROTHER-SP1RE1-SP1-Sublimation-Printer-White/dp/B0DDV1ZR7C?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A2W07LBOK8MVY&utm_source=chatgpt.com
